@@ -124,64 +124,52 @@
 <body class="bg-white text-black min-h-screen flex flex-col">
 
     <!-- NAVBAR -->
-    <header class="bg-white/80 shadow-sm backdrop-blur sm:backdrop-blur-none sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center h-24">
-            <a href="#hero-section" class="flex items-center space-x-2 group">
-                <img src="./images/logoglimora.png" alt="Logo Digital Invitation"
-                    class="w-32 h-16 group-hover:scale-105 transition-transform">
-            </a>
+  <header class="bg-white/80 sticky top-0 z-50 shadow-sm">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center h-16">
+      <!-- Logo -->
+      <a href="#hero-section" class="flex items-center space-x-2 group">
+        <img src="./images/logoglimora.png" alt="Logo Digital Invitation" class="w-28 h-auto group-hover:scale-105 transition-transform rounded-full" />
+      </a>
 
-            <nav class="hidden md:flex space-x-6">
-                <a href="#hero-section"
-                    class="nav-link relative px-3 py-2 text-gray-700 hover:text-purple-600 font-medium transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-purple-600 after:transition-all hover:after:w-full">Home</a>
-                <a href="#portfolio-section"
-                    class="nav-link relative px-3 py-2 text-gray-700 hover:text-purple-600 font-medium transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-purple-600 after:transition-all hover:after:w-full">Produk</a>
-                <a href="#how-it-works"
-                    class="nav-link relative px-3 py-2 text-gray-700 hover:text-purple-600 font-medium transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-purple-600 after:transition-all hover:after:w-full">Cara
-                    Kerja</a>
-                <a href="#testimonials-section"
-                    class="nav-link relative px-3 py-2 text-gray-700 hover:text-purple-600 font-medium transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-purple-600 after:transition-all hover:after:w-full">Testimoni</a>
-            </nav>
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex space-x-6">
+        <a href="#hero-section" class="nav-link relative px-3 py-2 text-gray-700 hover:text-purple-600 font-medium transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-purple-600 after:transition-all hover:after:w-full">Home</a>
+        <a href="#portfolio-section" class="nav-link relative px-3 py-2 text-gray-700 hover:text-purple-600 font-medium transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-purple-600 after:transition-all hover:after:w-full">Produk</a>
+        <a href="#how-it-works" class="nav-link relative px-3 py-2 text-gray-700 hover:text-purple-600 font-medium transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-purple-600 after:transition-all hover:after:w-full">Cara Kerja</a>
+        <a href="#testimonials-section" class="nav-link relative px-3 py-2 text-gray-700 hover:text-purple-600 font-medium transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-purple-600 after:transition-all hover:after:w-full">Testimoni</a>
+      </nav>
 
-            <div class="hidden md:block">
-                <a href="#cta-section"
-                    class="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white rounded-full py-2 px-4 font-medium transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105">
-                    Pesan Sekarang
-                </a>
-            </div>
+      <!-- Desktop CTA Button -->
+      <div class="hidden md:block">
+        <a href="#cta-section" class="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white rounded-full py-2 px-4 font-medium transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105">
+          Pesan Sekarang
+        </a>
+      </div>
 
-            <div class="md:hidden">
-                <button id="hamburger-btn" aria-label="Toggle menu"
-                    class="text-gray-700 hover:text-purple-600 focus:outline-none transition-colors cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-            </div>
-        </div>
+      <!-- Mobile Hamburger -->
+      <div class="md:hidden">
+        <button id="hamburger-btn" aria-label="Toggle menu" class="text-gray-700 hover:text-purple-600 focus:outline-none transition-colors cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu"
-            class="fixed top-0 right-0 w-full max-w-xs h-full bg-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out z-50 p-6 flex flex-col">
-            <div class="flex justify-end items-center mb-8">
-                <button id="close-menu-btn" aria-label="Close menu"
-                    class="text-gray-700 hover:text-red-500 text-3xl transition-colors cursor-pointer">&times;</button>
-            </div>
-            <nav class="flex flex-col space-y-2">
-                <a href="#hero-section"
-                    class="nav-link py-3 px-4 rounded-lg text-gray-800 hover:bg-purple-50 hover:text-purple-600 transition-colors font-medium">Home</a>
-                <a href="#portfolio-section"
-                    class="nav-link py-3 px-4 rounded-lg text-gray-800 hover:bg-purple-50 hover:text-purple-600 transition-colors font-medium">Produk</a>
-                <a href="#how-it-works"
-                    class="nav-link py-3 px-4 rounded-lg text-gray-800 hover:bg-purple-50 hover:text-purple-600 transition-colors font-medium">Cara
-                    Kerja</a>
-                <a href="#testimonials-section"
-                    class="nav-link py-3 px-4 rounded-lg text-gray-800 hover:bg-purple-50 hover:text-purple-600 transition-colors font-medium">Testimoni</a>
-            </nav>
-        </div>
-    </header>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed top-0 right-0 w-full max-w-xs h-full bg-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out z-50 p-6 hidden md:hidden">
+      <div class="flex justify-end items-center mb-8">
+        <button id="close-menu-btn" aria-label="Close menu" class="text-gray-700 hover:text-red-500 text-3xl transition-colors cursor-pointer">&times;</button>
+      </div>
+      <nav class="flex flex-col space-y-4">
+        <a href="#hero-section" class="nav-link py-3 px-4 rounded-lg text-gray-800 hover:bg-purple-50 hover:text-purple-600 transition-colors font-medium">Home</a>
+        <a href="#portfolio-section" class="nav-link py-3 px-4 rounded-lg text-gray-800 hover:bg-purple-50 hover:text-purple-600 transition-colors font-medium">Produk</a>
+        <a href="#how-it-works" class="nav-link py-3 px-4 rounded-lg text-gray-800 hover:bg-purple-50 hover:text-purple-600 transition-colors font-medium">Cara Kerja</a>
+        <a href="#testimonials-section" class="nav-link py-3 px-4 rounded-lg text-gray-800 hover:bg-purple-50 hover:text-purple-600 transition-colors font-medium">Testimoni</a>
+        <a href="#cta-section" class="mt-4 bg-purple-600 text-white text-center py-3 px-4 rounded-lg hover:bg-purple-700 transition-colors">Pesan Sekarang</a>
+      </nav>
+    </div>
+  </header>
 
     <!-- MAIN CONTENT -->
     <main class="flex-grow">
@@ -513,39 +501,43 @@
 
     <!-- JS for Mobile Menu -->
     <script>
-        const hamburgerBtn = document.getElementById('hamburger-btn');
-        const closeMenuBtn = document.getElementById('close-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const body = document.body;
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const closeMenuBtn = document.getElementById('close-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const body = document.body;
 
-        if (hamburgerBtn && closeMenuBtn && mobileMenu) {
-            const toggleMenu = (show) => {
-                if (show) {
-                    mobileMenu.classList.remove('translate-x-full');
-                    body.classList.add('overflow-hidden');
-                } else {
-                    mobileMenu.classList.add('translate-x-full');
-                    body.classList.remove('overflow-hidden');
-                }
-            };
-
-            hamburgerBtn.addEventListener('click', () => toggleMenu(true));
-            closeMenuBtn.addEventListener('click', () => toggleMenu(false));
-
-            // Close when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!mobileMenu.contains(e.target) && !hamburgerBtn.contains(e.target) && !mobileMenu.classList.contains('translate-x-full')) {
-                    toggleMenu(false);
-                }
-            });
-
-            // Close when pressing Escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && !mobileMenu.classList.contains('translate-x-full')) {
-                    toggleMenu(false);
-                }
-            });
+    if (hamburgerBtn && closeMenuBtn && mobileMenu) {
+      const toggleMenu = (show) => {
+        if (show) {
+          mobileMenu.classList.remove('translate-x-full');
+          mobileMenu.classList.remove('hidden');
+          body.classList.add('overflow-hidden');
+        } else {
+          mobileMenu.classList.add('translate-x-full');
+          setTimeout(() => {
+            mobileMenu.classList.add('hidden');
+          }, 300);
+          body.classList.remove('overflow-hidden');
         }
+      };
+
+      hamburgerBtn.addEventListener('click', () => toggleMenu(true));
+      closeMenuBtn.addEventListener('click', () => toggleMenu(false));
+
+      // Close when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !hamburgerBtn.contains(e.target) && !mobileMenu.classList.contains('translate-x-full')) {
+          toggleMenu(false);
+        }
+      });
+
+      // Close when pressing Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileMenu.classList.contains('translate-x-full')) {
+          toggleMenu(false);
+        }
+      });
+    }
         const navLinks = document.querySelectorAll('.nav-link');
         const sections = document.querySelectorAll('section[id]');
 
