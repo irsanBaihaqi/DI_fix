@@ -1,14 +1,19 @@
 // Wait for the DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", function() {
-    // ===== Intersection Observer for Scroll Animations =====
+    // ===== Intersection Observer for Scroll Animations (Reactivating version) =====
     const animateOnScroll = () => {
         const elements = document.querySelectorAll('.animate-on-scroll');
         
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
+                // Add animation class when element is in view
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animate');
+                } else {
+                    // Important change: Remove animation class when element leaves viewport
+                    entry.target.classList.remove('animate');
                 }
+                // We continue observing to allow re-animation
             });
         }, {
             threshold: 0.1,
@@ -51,39 +56,49 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     };
     
-    // ===== Animated Counter for Stats =====
+    // ===== Animated Counter for Stats with reset capability =====
     const animateCounters = () => {
         const counters = document.querySelectorAll('.stat-counter');
         
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const target = parseInt(entry.target.getAttribute('data-target'));
-                    const units = entry.target.getAttribute('data-units') || '';
-                    const duration = 1500; // Animation duration in ms
-                    const frameRate = 1000 / 60; // 60fps
-                    const totalFrames = Math.round(duration / frameRate);
-                    let frame = 0;
-                    
-                    const counter = setInterval(() => {
-                        frame++;
-                        const progress = frame / totalFrames;
-                        const currentCount = Math.round(progress * target);
-                        
-                        if (frame === totalFrames) {
-                            entry.target.textContent = target.toLocaleString() + units;
-                            clearInterval(counter);
-                        } else {
-                            entry.target.textContent = currentCount.toLocaleString();
-                        }
-                    }, frameRate);
-                    
-                    observer.unobserve(entry.target);
+                    animateCounter(entry.target);
+                } else {
+                    // Reset counter when out of view for next animation
+                    entry.target.textContent = '0';
+                    entry.target.setAttribute('data-animated', 'false');
                 }
             });
         }, {
             threshold: 0.5
         });
+        
+        function animateCounter(counterElement) {
+            // Check if currently animating to prevent duplicates
+            if (counterElement.getAttribute('data-animated') === 'true') return;
+            
+            counterElement.setAttribute('data-animated', 'true');
+            const target = parseInt(counterElement.getAttribute('data-target'));
+            const units = counterElement.getAttribute('data-units') || '';
+            const duration = 1500; // Animation duration in ms
+            const frameRate = 1000 / 60; // 60fps
+            const totalFrames = Math.round(duration / frameRate);
+            let frame = 0;
+            
+            const counter = setInterval(() => {
+                frame++;
+                const progress = frame / totalFrames;
+                const currentCount = Math.round(progress * target);
+                
+                if (frame === totalFrames) {
+                    counterElement.textContent = target.toLocaleString() + units;
+                    clearInterval(counter);
+                } else {
+                    counterElement.textContent = currentCount.toLocaleString();
+                }
+            }, frameRate);
+        }
         
         counters.forEach(counter => {
             observer.observe(counter);
@@ -109,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     };
     
-    // ===== Testimonial Slider =====
+    // ===== Testimonial Slider with enhanced animations =====
     const testimonialSlider = () => {
         const testimonialsContainer = document.querySelector('#testimonials-section .grid');
         if (!testimonialsContainer) return;
@@ -142,8 +157,11 @@ document.addEventListener("DOMContentLoaded", function() {
             if (window.innerWidth < 768) {
                 testimonials.forEach(testimonial => {
                     testimonial.style.display = 'none';
+                    testimonial.classList.remove('testimonial-enter');
                 });
                 testimonials[index].style.display = 'block';
+                // Force a reflow to restart animation
+                void testimonials[index].offsetWidth;
                 testimonials[index].classList.add('testimonial-enter');
             } else {
                 // Display all on larger screens
@@ -240,7 +258,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     };
     
-    // ===== Add CSS for Animations =====
+    // ===== Add CSS for Animations with improved transitions =====
     const addAnimationStyles = () => {
         const style = document.createElement('style');
         style.textContent = `
@@ -253,6 +271,11 @@ document.addEventListener("DOMContentLoaded", function() {
             .animate-on-scroll.animate {
                 opacity: 1;
                 transform: translateY(0);
+            }
+            
+            /* Clear transitions after animation completes to allow for reset */
+            .animate-on-scroll:not(.animate) {
+                transition-duration: 0.4s;
             }
             
             .delay-200 { transition-delay: 0.2s; }
@@ -385,6 +408,7 @@ document.addEventListener("DOMContentLoaded", function() {
             
             // Set up for animation
             stat.setAttribute('data-target', numericValue);
+            stat.setAttribute('data-animated', 'false');
             stat.classList.add('stat-counter');
             stat.textContent = '0';
             
